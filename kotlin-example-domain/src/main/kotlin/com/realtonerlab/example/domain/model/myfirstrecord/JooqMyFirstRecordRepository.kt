@@ -1,4 +1,4 @@
-package com.realtonerlab.example.domain.model.my_first_record
+package com.realtonerlab.example.domain.model.myfirstrecord
 
 import net.realtonerlab.example.domain.generated.tables.MyFirstRecords.MY_FIRST_RECORDS
 import org.joda.time.DateTime

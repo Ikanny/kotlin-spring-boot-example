@@ -1,7 +1,7 @@
 package com.realtonerlab.example.domain.dto
 
 import com.realtonerlab.example.domain.KotlinExampleDomainException
-import com.realtonerlab.example.domain.model.my_first_record.MyFirstRecord
+import com.realtonerlab.example.domain.model.myfirstrecord.MyFirstRecord
 import org.joda.time.DateTime
 
 /**

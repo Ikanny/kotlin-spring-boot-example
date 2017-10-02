@@ -2,7 +2,7 @@ package com.realtonerlab.example.domain.service
 
 import com.google.common.base.Preconditions
 import com.realtonerlab.example.domain.dto.MyFirstRecordDto
-import com.realtonerlab.example.domain.model.my_first_record.MyFirstRecordRepository
+import com.realtonerlab.example.domain.model.myfirstrecord.MyFirstRecordRepository
 import org.springframework.stereotype.Service
 
 /**

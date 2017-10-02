@@ -1,4 +1,4 @@
-package com.realtonerlab.example.domain.model.my_first_record
+package com.realtonerlab.example.domain.model.myfirstrecord
 
 /**
  * @author ryuikhan

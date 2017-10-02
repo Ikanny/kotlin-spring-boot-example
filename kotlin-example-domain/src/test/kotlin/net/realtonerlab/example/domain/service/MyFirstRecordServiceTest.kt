@@ -1,8 +1,8 @@
 package net.realtonerlab.example.domain.service
 
 import com.realtonerlab.example.domain.dto.fromMyFirstRecord
-import com.realtonerlab.example.domain.model.my_first_record.MyFirstRecord
-import com.realtonerlab.example.domain.model.my_first_record.MyFirstRecordRepository
+import com.realtonerlab.example.domain.model.myfirstrecord.MyFirstRecord
+import com.realtonerlab.example.domain.model.myfirstrecord.MyFirstRecordRepository
 import com.realtonerlab.example.domain.service.MyFirstRecordService
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
