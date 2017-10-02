@@ -1,0 +1,3 @@
+rootProject.name = 'kotlin-example'
+
+include 'kotlin-example-interfaces'
