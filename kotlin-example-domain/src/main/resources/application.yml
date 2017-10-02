@@ -1,0 +1,65 @@
+spring:
+  profiles: local
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/example_schema?useSSL=false
+    username: example-user
+    password: example-user
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 5
+  jooq:
+    sql-dialect: mysql
+
+profile: ${spring.profiles}
+
+security:
+  cors:
+    accessControlAllowOrigin: '*'
+
+  jwt:
+    authenticationHeaderName: 'Authentication'
+    secret: localSecret
+
+flyway:
+  enabled: true
+  schemas: [example_schema]
+  url: ${spring.datasource.url}
+  user: ${spring.datasource.username}
+  password: ${spring.datasource.username}
+
+---
+spring:
+  profiles: develop
+  datasource:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost/realtoner_chat
+      username: realtoner-chat
+      password: realtoner-chat
+      hikari:
+        connection-timeout: 60000
+        maximum-pool-size: 5
+
+profile: ${spring.profiles}
+
+security:
+  cors:
+    accessControlAllowOrigin: '*'
+
+---
+spring:
+  profiles: production
+  datasource:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost/realtoner_chat
+      username: realtoner-chat
+      password: realtoner-chat
+      hikari:
+        connection-timeout: 60000
+        maximum-pool-size: 5
+
+profiles: ${spring.profiles}
+
+security:
+  cors:
+    accessControlAllowOrigin: '*'

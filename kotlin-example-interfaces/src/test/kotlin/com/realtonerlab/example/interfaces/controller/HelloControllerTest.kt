@@ -30,4 +30,9 @@ class HelloControllerTest {
 
         assertThat(result).isEqualToIgnoringCase("hello")
     }
+
+    @Test
+    fun `test for test`() {
+
+    }
 }

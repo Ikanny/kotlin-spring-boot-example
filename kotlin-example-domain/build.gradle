@@ -23,7 +23,7 @@ buildscript {
 
 apply plugin: 'kotlin-spring'
 apply plugin: 'org.springframework.boot'
-apply plugin: "org.flywaydb.flyway"
+apply plugin: 'org.flywaydb.flyway'
 
 dependencies {
 
@@ -39,10 +39,17 @@ dependencies {
     compile "mysql:mysql-connector-java:6.0.6"
     compile "com.zaxxer:HikariCP:2.7.0"
 
+    // dependencies for flyway
+    compile "org.flywaydb:flyway-core:$FLYWAY_VERSION"
+
     // dependencies for jooq
     compile "org.jooq:jooq:$JOOQ_VERSION"
     compile "org.jooq:jooq-meta:$JOOQ_VERSION"
     compile "org.jooq:jooq-codegen:$JOOQ_VERSION"
+
+    // dependencies for jackson
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-joda:2.9.1"
+
 }
 
 flyway {
