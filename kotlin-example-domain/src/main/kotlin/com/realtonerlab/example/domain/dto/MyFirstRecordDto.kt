@@ -9,7 +9,7 @@ import org.joda.time.DateTime
  * @since 2017. 10. 2.
  */
 fun fromMyFirstRecord(myFirstRecord: MyFirstRecord): MyFirstRecordDto =
-        MyFirstRecordDto(myFirstRecord.id ?: throw KotlinExampleDomainException(""),
+        MyFirstRecordDto(myFirstRecord.id ?: throw KotlinExampleDomainException("id cannot be null"),
                 myFirstRecord.name,
                 myFirstRecord.createdAt,
                 myFirstRecord.modifiedAt)
