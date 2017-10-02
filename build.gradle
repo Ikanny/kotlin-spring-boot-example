@@ -6,8 +6,6 @@ buildscript {
     ext {
         KOTLIN_VERSION = '1.1.4'
         SPRING_BOOT_VERSION = '1.5.7.RELEASE'
-        JOOQ_VERSION = '3.9.1'
-        H2_VERSION = '1.4.194'
     }
 
     repositories {
@@ -21,8 +19,6 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
         classpath "org.jetbrains.kotlin:kotlin-allopen:$KOTLIN_VERSION"
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$SPRING_BOOT_VERSION"
-        classpath "org.jooq:jooq-codegen:$JOOQ_VERSION"
-        classpath "com.h2database:h2:$H2_VERSION"
     }
 }
 

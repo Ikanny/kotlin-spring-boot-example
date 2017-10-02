@@ -1,5 +1,29 @@
+import org.jooq.util.GenerationTool
+import org.jooq.util.jaxb.*
+
+buildscript {
+
+    ext {
+        FLYWAY_VERSION = '4.1.2'
+        JOOQ_VERSION = '3.9.1'
+        H2_VERSION = '1.4.194'
+    }
+
+    repositories {
+        jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+
+    dependencies {
+        classpath "gradle.plugin.com.boxfuse.client:flyway-release:$FLYWAY_VERSION"
+        classpath "org.jooq:jooq-codegen:$JOOQ_VERSION"
+        classpath "com.h2database:h2:$H2_VERSION"
+    }
+}
+
 apply plugin: 'kotlin-spring'
 apply plugin: 'org.springframework.boot'
+apply plugin: "org.flywaydb.flyway"
 
 dependencies {
 
@@ -10,4 +34,43 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-jooq"
     compile "org.springframework.boot:spring-boot-actuator"
     compile "org.springframework.boot:spring-boot-devtools"
+
+    // dependencies for db
+    compile "mysql:mysql-connector-java:6.0.6"
+    compile "com.zaxxer:HikariCP:2.7.0"
+
+    // dependencies for jooq
+    compile "org.jooq:jooq:$JOOQ_VERSION"
+    compile "org.jooq:jooq-meta:$JOOQ_VERSION"
+    compile "org.jooq:jooq-codegen:$JOOQ_VERSION"
 }
+
+flyway {
+    url = 'jdbc:h2:./db/tmp;MODE=MySQL'
+    user = 'sa'
+    password = ''
+}
+
+task jooqGenerate {
+    doLast {
+        Configuration configuration = new Configuration()
+                .withJdbc(new Jdbc()
+                .withDriver("org.h2.Driver")
+                .withUrl("jdbc:h2:./db/tmp;MODE=MySQL")
+                .withUser("sa")
+                .withPassword("")
+        )
+                .withGenerator(new Generator()
+                .withDatabase(new Database()
+                .withInputSchema("public")
+                .withOutputSchemaToDefault(true)
+        )
+                .withTarget(new Target()
+                .withPackageName("net.realtonerlab.example.domain.generated")
+                .withDirectory("kotlin-example-domain/src/main/java")
+        )
+        )
+        GenerationTool.generate(configuration)
+    }
+}
+jooqGenerate.dependsOn flywayMigrate
