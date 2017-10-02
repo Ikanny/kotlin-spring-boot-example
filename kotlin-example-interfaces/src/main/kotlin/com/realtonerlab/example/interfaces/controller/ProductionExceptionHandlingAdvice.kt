@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler
  */
 @ControllerAdvice
 @Profile("production")
-class ProductionExceptionHandleringAdvice {
+class ProductionExceptionHandlingAdvice {
 
     companion object {
-        private val log = LoggerFactory.getLogger(ProductionExceptionHandleringAdvice::class.java)
+        private val log = LoggerFactory.getLogger(ProductionExceptionHandlingAdvice::class.java)
     }
 
     @ExceptionHandler(Exception::class)
