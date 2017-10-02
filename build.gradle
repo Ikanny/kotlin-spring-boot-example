@@ -44,6 +44,7 @@ subprojects {
         compile "com.google.guava:guava:23.0"
         compile "org.slf4j:slf4j-api:1.7.25"
         compile "joda-time:joda-time:2.9.9"
+        compile "commons-io:commons-io:2.5"
 
         // dependencies for test
         testCompile "junit:junit:4.12"
