@@ -1,3 +1,5 @@
 rootProject.name = 'kotlin-example'
 
-include 'kotlin-example-interfaces'
+include ':kotlin-example-commons'
+include ':kotlin-example-domain'
+include ':kotlin-example-interfaces'

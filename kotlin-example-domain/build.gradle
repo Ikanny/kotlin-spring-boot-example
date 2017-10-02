@@ -1,0 +1,13 @@
+apply plugin: 'kotlin-spring'
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+
+    compile project(":kotlin-example-commons")
+
+    // dependencies for spring boot
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-jooq"
+    compile "org.springframework.boot:spring-boot-actuator"
+    compile "org.springframework.boot:spring-boot-devtools"
+}
