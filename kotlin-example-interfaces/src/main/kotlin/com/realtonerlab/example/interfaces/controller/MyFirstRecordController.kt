@@ -1,6 +1,7 @@
 package com.realtonerlab.example.interfaces.controller
 
 import com.realtonerlab.example.domain.dto.MyFirstRecordDto
+import com.realtonerlab.example.domain.dto.MyFirstRecordWithDetailsDto
 import com.realtonerlab.example.domain.service.MyFirstRecordService
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
@@ -20,13 +21,23 @@ class MyFirstRecordController(private val myFirstRecordService: MyFirstRecordSer
 
 
     @GetMapping("/record/{id}")
-    fun getById(@PathVariable("id") id: Long): ResponseEntity<MyFirstRecordDto>? {
+    fun getById(@PathVariable("id") id: Long): ResponseEntity<MyFirstRecordDto> {
         if (id < 1) {
             return ResponseEntity.badRequest().build()
         }
 
-        log.debug("new request arrived. id : {}", id)
         return myFirstRecordService.findById(id)?.let {
+            ResponseEntity.ok(it)
+        } ?: ResponseEntity.badRequest().build()
+    }
+
+    @GetMapping("/record/{id}/details")
+    fun getByIdWithDetails(@PathVariable("id") id: Long): ResponseEntity<MyFirstRecordWithDetailsDto> {
+        if (id < 1) {
+            return ResponseEntity.badRequest().build()
+        }
+
+        return myFirstRecordService.findByIdWithDetails(id)?.let {
             ResponseEntity.ok(it)
         } ?: ResponseEntity.badRequest().build()
     }

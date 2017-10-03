@@ -7,4 +7,5 @@ package com.realtonerlab.example.domain.model.myfirstrecord
 interface MyFirstRecordRepository {
 
     fun findById(id: Long): MyFirstRecord?
+    fun findByIdWithDetails(id: Long): MyFirstRecordWithDetails?
 }

@@ -10,12 +10,17 @@ import java.util.*
  */
 class MyFirstRecordDetail(val id: Long?,
                           val recordId: Long,
+                          val description: String,
                           val createdAt: DateTime = DateTime.now(),
                           val modifiedAt: DateTime = DateTime.now()) : KotlinExampleModel() {
 
-    override fun hashCode(): Int = Objects.hash(id, recordId, createdAt, modifiedAt)
+    override fun hashCode(): Int = Objects.hash(id, recordId, description)
 
-    override fun equals(other: Any?): Boolean {
-        return super.equals(other)
-    }
+    override fun equals(other: Any?): Boolean = other?.let {
+        if (it !is MyFirstRecordDetail) {
+            return false
+        }
+
+        return this.id == it.id && this.recordId == it.recordId && this.description == it.description
+    } ?: false
 }
