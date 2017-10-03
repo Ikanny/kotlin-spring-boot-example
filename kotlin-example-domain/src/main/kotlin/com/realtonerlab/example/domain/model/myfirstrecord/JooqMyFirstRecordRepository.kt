@@ -12,14 +12,10 @@ import org.springframework.stereotype.Repository
 @Repository
 class JooqMyFirstRecordRepository(private val dslContext: DSLContext) : MyFirstRecordRepository {
 
-    override fun findById(id: Long): MyFirstRecord? {
-        return dslContext.selectFrom(MY_FIRST_RECORDS).fetchOne()?.let {
-            MyFirstRecord(
-                    it.id,
-                    it.name,
-                    DateTime(it.createdat),
-                    DateTime(it.modifiedat))
-        }
-    }
-
+    override fun findById(id: Long): MyFirstRecord? =
+            dslContext
+                    .selectFrom(MY_FIRST_RECORDS)
+                    .fetchOne()?.let {
+                MyFirstRecord(it.id, it.name, DateTime(it.createdat), DateTime(it.modifiedat))
+            }
 }

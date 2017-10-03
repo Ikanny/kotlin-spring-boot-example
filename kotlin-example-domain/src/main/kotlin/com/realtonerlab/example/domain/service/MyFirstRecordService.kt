@@ -17,7 +17,7 @@ class MyFirstRecordService(private val myFirstRecordRepository: MyFirstRecordRep
 
         return myFirstRecordRepository.findById(id)?.let {
             MyFirstRecordDto(
-                    it.id ?: throw RuntimeException(""),
+                    it.id ?: throw RuntimeException("id of MyFirstRecordDto cannot be null."),
                     it.name,
                     it.createdAt,
                     it.modifiedAt

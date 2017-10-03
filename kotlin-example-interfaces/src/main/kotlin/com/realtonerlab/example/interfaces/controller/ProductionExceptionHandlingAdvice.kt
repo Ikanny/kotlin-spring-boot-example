@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 
 /**
  * @author ryuikhan
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler
  */
 @ControllerAdvice
 @Profile("production")
-class ProductionExceptionHandlingAdvice {
+class ProductionExceptionHandlingAdvice : ResponseEntityExceptionHandler() {
 
     companion object {
         private val log = LoggerFactory.getLogger(ProductionExceptionHandlingAdvice::class.java)
