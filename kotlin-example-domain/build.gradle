@@ -25,6 +25,17 @@ apply plugin: 'kotlin-spring'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'org.flywaydb.flyway'
 
+sourceSets {
+    integrationTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file("src/integrationtest/kotlin")
+        }
+        resources.srcDir file("src/integrationtest/resources")
+    }
+}
+
 dependencies {
 
     compile project(":kotlin-example-commons")
@@ -50,6 +61,10 @@ dependencies {
 
     // dependencies for jackson
     compile "com.fasterxml.jackson.datatype:jackson-datatype-joda:2.9.1"
+
+    // https://mvnrepository.com/artifact/com.h2database/h2
+    testCompile "com.h2database:h2:$H2_VERSION"
+
 
 }
 

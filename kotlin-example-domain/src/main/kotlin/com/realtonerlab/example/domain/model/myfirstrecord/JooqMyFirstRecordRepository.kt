@@ -1,7 +1,7 @@
 package com.realtonerlab.example.domain.model.myfirstrecord
 
-import net.realtonerlab.example.domain.generated.tables.MyFirstRecordDetails.MY_FIRST_RECORD_DETAILS
-import net.realtonerlab.example.domain.generated.tables.MyFirstRecords.MY_FIRST_RECORDS
+import com.realtonerlab.example.domain.generated.tables.MyFirstRecordDetails.MY_FIRST_RECORD_DETAILS
+import com.realtonerlab.example.domain.generated.tables.MyFirstRecords.MY_FIRST_RECORDS
 import org.joda.time.DateTime
 import org.jooq.DSLContext
 import org.jooq.Record

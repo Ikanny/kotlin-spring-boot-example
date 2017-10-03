@@ -39,6 +39,8 @@ spring:
       hikari:
         connection-timeout: 60000
         maximum-pool-size: 5
+  jooq:
+      sql-dialect: mysql
 
 profile: ${spring.profiles}
 
@@ -57,6 +59,8 @@ spring:
       hikari:
         connection-timeout: 60000
         maximum-pool-size: 5
+  jooq:
+    sql-dialect: mysql
 
 profiles: ${spring.profiles}
 

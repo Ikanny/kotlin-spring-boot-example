@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":kotlin-example-commons:integrationTest" external.linked.project.path="$MODULE_DIR$/../../../kotlin-example-commons" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="kotlin-example" external.system.module.type="sourceSet" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="kotlin-language" name="Kotlin">
+      <configuration version="3" platform="JVM 1.6" useProjectSettings="false">
+        <compilerSettings />
+        <compilerArguments>
+          <option name="destination" value="$MODULE_DIR$/../../../kotlin-example-commons/build/kotlin-classes/integrationTest" />
+          <option name="classpath" value="" />
+          <option name="noStdlib" value="true" />
+          <option name="noReflect" value="true" />
+          <option name="moduleName" value="kotlin-example-commons_integrationTest" />
+          <option name="addCompilerBuiltIns" value="true" />
+          <option name="loadBuiltInsFromDependencies" value="true" />
+          <option name="languageVersion" value="1.1" />
+          <option name="apiVersion" value="1.1" />
+          <option name="pluginOptions">
+            <array />
+          </option>
+          <option name="pluginClasspaths">
+            <array />
+          </option>
+        </compilerArguments>
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/../../../kotlin-example-commons/out/integrationTest/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../kotlin-example-commons/src/integrationtest">
+      <sourceFolder url="file://$MODULE_DIR$/../../../kotlin-example-commons/src/integrationTest/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../kotlin-example-commons/src/integrationTest/kotlin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../kotlin-example-commons/src/integrationTest/resources" type="java-resource" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="kotlin-example-commons_main" />
+    <orderEntry type="module" module-name="kotlin-example-commons_test" production-on-test="" />
+  </component>
+</module>

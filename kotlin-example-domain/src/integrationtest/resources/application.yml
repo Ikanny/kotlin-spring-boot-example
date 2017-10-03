@@ -1,0 +1,29 @@
+spring:
+  profiles: integration
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:~/example_schema
+    username: example-user
+    password: example-user
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 5
+  jooq:
+    sql-dialect: mysql
+
+profile: ${spring.profiles}
+
+security:
+  cors:
+    accessControlAllowOrigin: '*'
+
+  jwt:
+    authenticationHeaderName: 'Authentication'
+    secret: localSecret
+
+flyway:
+  enabled: true
+  schemas: [example_schema]
+  url: ${spring.datasource.url}
+  user: ${spring.datasource.username}
+  password: ${spring.datasource.username}

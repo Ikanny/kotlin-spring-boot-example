@@ -1,4 +1,4 @@
-package net.realtonerlab.example.domain.service
+package com.realtonerlab.example.domain.service
 
 import com.realtonerlab.example.domain.dto.fromMyFirstRecord
 import com.realtonerlab.example.domain.model.myfirstrecord.MyFirstRecord
