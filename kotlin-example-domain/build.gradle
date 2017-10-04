@@ -1,6 +1,8 @@
 import org.jooq.util.GenerationTool
 import org.jooq.util.jaxb.*
 
+import java.nio.file.Files
+
 buildscript {
 
     ext {
@@ -25,6 +27,11 @@ apply plugin: 'kotlin-spring'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'org.flywaydb.flyway'
 
+configurations {
+    integrationTestCompile.extendsFrom testCompile
+    integrationTestRuntime.extendsFrom testRuntime
+}
+
 sourceSets {
     integrationTest {
         java {
@@ -42,7 +49,7 @@ dependencies {
 
     // dependencies for spring boot
     compile "org.springframework.boot:spring-boot-starter-web"
-    compile "org.springframework.boot:spring-boot-starter-data-jpa"
+    compile "org.springframework.boot:spring-boot-starter-test"
     compile "org.springframework.boot:spring-boot-starter-jooq"
     compile "org.springframework.boot:spring-boot-actuator"
     compile "org.springframework.boot:spring-boot-devtools"
@@ -62,14 +69,13 @@ dependencies {
     // dependencies for jackson
     compile "com.fasterxml.jackson.datatype:jackson-datatype-joda:2.9.1"
 
-    // https://mvnrepository.com/artifact/com.h2database/h2
-    testCompile "com.h2database:h2:$H2_VERSION"
-
-
+    // dependencies for IT test
+    integrationTestCompile "com.h2database:h2:$H2_VERSION"
+    integrationTestCompile "org.dbunit:dbunit:2.5.4"
 }
 
 flyway {
-    url = 'jdbc:h2:./db/tmp;MODE=MySQL'
+    url = 'jdbc:h2:./db/example_schema;MODE=MySQL'
     user = 'sa'
     password = ''
 }
@@ -79,7 +85,7 @@ task jooqGenerate {
         Configuration configuration = new Configuration()
                 .withJdbc(new Jdbc()
                 .withDriver("org.h2.Driver")
-                .withUrl("jdbc:h2:./db/tmp;MODE=MySQL")
+                .withUrl('jdbc:h2:./db/example_schema;MODE=MySQL')
                 .withUser("sa")
                 .withPassword("")
         )
@@ -90,11 +96,15 @@ task jooqGenerate {
                 .withOutputSchemaToDefault(true)
         )
                 .withTarget(new Target()
-                .withPackageName("net.realtonerlab.example.domain.generated")
+                .withPackageName("com.realtonerlab.example.domain.generated")
                 .withDirectory("kotlin-example-domain/src/main/java")
         )
         )
         GenerationTool.generate(configuration)
+
+        // remove h2 db files
+        new File("./db/example_schema.mv.db").delete()
+        new File("./db").delete()
     }
 }
 jooqGenerate.dependsOn flywayMigrate

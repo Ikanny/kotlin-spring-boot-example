@@ -8,7 +8,4 @@ import com.realtonerlab.example.domain.KotlinExampleDomainIntegrationTest
  */
 class MyFirstRecordServiceIntegrationTest : KotlinExampleDomainIntegrationTest() {
 
-    fun `ataet`() {
-
-    }
 }
