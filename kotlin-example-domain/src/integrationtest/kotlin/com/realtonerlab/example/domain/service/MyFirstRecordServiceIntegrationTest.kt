@@ -6,6 +6,4 @@ import com.realtonerlab.example.domain.KotlinExampleDomainIntegrationTest
  * @author ryuikhan
  * @since 2017. 10. 4.
  */
-class MyFirstRecordServiceIntegrationTest : KotlinExampleDomainIntegrationTest() {
-
-}
+class MyFirstRecordServiceIntegrationTest : KotlinExampleDomainIntegrationTest()
