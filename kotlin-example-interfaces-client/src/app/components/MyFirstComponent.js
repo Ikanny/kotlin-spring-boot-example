@@ -2,13 +2,14 @@
  * @author ryuikhan
  * @since 2017. 10. 16.
  */
-import react, { Component } from 'react';
+import React from 'react';
+import styles from './MyFirstComponent.css';
 
-export default class MyFirstComponent extends Component {
+export default class MyFirstComponent extends React.Component {
     render() {
         return (
-            <div>
-                <h1>hello world</h1>
+            <div className={styles.main_panel}>
+                <h1>hello world!!!</h1>
             </div>
         );
     }
