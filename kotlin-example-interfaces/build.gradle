@@ -1,8 +1,14 @@
 apply plugin: 'kotlin-spring'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
 
 dependencies {
     compile project(":kotlin-example-domain")
+
+    // dependences for spring boot
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude "org.apache.tomcat:tomcat-jdbc:$SPRING_BOOT_VERSION"
+    }
 
     // dependencies for spring boot
 //    compile "org.springframework.boot:spring-boot-starter-security"

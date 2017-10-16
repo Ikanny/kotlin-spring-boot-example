@@ -53,17 +53,24 @@ spring:
   profiles: production
   datasource:
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost/realtoner_chat
-      username: realtoner-chat
-      password: realtoner-chat
+      url: jdbc:mysql://general-test-db.c9d8q9qv5tqp.ap-northeast-2.rds.amazonaws.com/example_schema
+      username: example-user
+      password: example-user
       hikari:
         connection-timeout: 60000
         maximum-pool-size: 5
   jooq:
-    sql-dialect: mysql
+      sql-dialect: mysql
 
 profiles: ${spring.profiles}
 
 security:
   cors:
     accessControlAllowOrigin: '*'
+
+flyway:
+  enabled: true
+  schemas: [example_schema]
+  url: ${spring.datasource.url}
+  user: ${spring.datasource.username}
+  password: ${spring.datasource.password}

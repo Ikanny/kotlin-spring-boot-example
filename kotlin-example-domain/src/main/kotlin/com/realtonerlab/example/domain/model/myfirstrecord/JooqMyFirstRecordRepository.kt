@@ -24,15 +24,30 @@ class JooqMyFirstRecordRepository(private val dslContext: DSLContext) : MyFirstR
 
     override fun findByIdWithDetails(id: Long): MyFirstRecordWithDetails? =
             dslContext
-                    .selectFrom(MY_FIRST_RECORDS.join(MY_FIRST_RECORD_DETAILS)
+                    .selectFrom(MY_FIRST_RECORDS.leftJoin(MY_FIRST_RECORD_DETAILS)
                             .on(MY_FIRST_RECORDS.ID.eq(MY_FIRST_RECORD_DETAILS.RECORDID)))
                     .where(MY_FIRST_RECORDS.ID.eq(id))
-                    .fetch()?.let {
-                it.drop(1).fold(toMyFirstRecordWithDetails(it.first()), { acc, next ->
-                    acc.copy(details = acc.details + toMyFirstRecordDetail(next))
-                })
-            }
+                    .fetch()
+                    ?.let {
+                        if (it.size != 1) {
+                            return null
+                        }
 
+                        val entry = it.groupBy { toMyFirstRecord(it) }.entries.first()
+                        val myFirstRecord = entry.key
+                        val rows = entry.value
+                        val details = rows
+                                .filter { it.getValue(MY_FIRST_RECORD_DETAILS.ID) != null }
+                                .map { toMyFirstRecordDetail(it) }
+
+                        MyFirstRecordWithDetails(myFirstRecord, details)
+                    }
+
+    private fun toMyFirstRecord(record: Record): MyFirstRecord =
+            MyFirstRecord(record.getValue(MY_FIRST_RECORDS.ID),
+                    record.getValue(MY_FIRST_RECORDS.NAME),
+                    DateTime(record.getValue(MY_FIRST_RECORDS.CREATEDAT)),
+                    DateTime(record.getValue(MY_FIRST_RECORDS.MODIFIEDAT)))
 
     private fun toMyFirstRecordDetail(record: Record): MyFirstRecordDetail =
             MyFirstRecordDetail(record.getValue(MY_FIRST_RECORD_DETAILS.ID),
@@ -40,12 +55,4 @@ class JooqMyFirstRecordRepository(private val dslContext: DSLContext) : MyFirstR
                     record.getValue(MY_FIRST_RECORD_DETAILS.DESCRIPTION),
                     DateTime(record.getValue(MY_FIRST_RECORD_DETAILS.CREATEDAT)),
                     DateTime(record.getValue(MY_FIRST_RECORD_DETAILS.MODIFIEDAT)))
-
-    private fun toMyFirstRecordWithDetails(record: Record): MyFirstRecordWithDetails =
-            MyFirstRecordWithDetails(
-                    record.getValue(MY_FIRST_RECORDS.ID),
-                    record.getValue(MY_FIRST_RECORDS.NAME),
-                    DateTime(record.getValue(MY_FIRST_RECORDS.CREATEDAT)),
-                    DateTime(record.getValue(MY_FIRST_RECORDS.MODIFIEDAT)),
-                    listOf(toMyFirstRecordDetail(record)))
 }
