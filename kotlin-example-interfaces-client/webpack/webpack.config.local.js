@@ -6,17 +6,23 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const BUILD_TIME = new Date().getTime();
+const plugins = [];
 
 module.exports = {
     entry: './src/app/index.js',
     output: {
         path: path.resolve(__dirname, '..', 'dist'),
-        filename: 'app-dist.' + BUILD_TIME + '.local.js'
+        filename: 'app-dist.local.js'
     },
     module: {
-        loaders: [
-
+        rules: [
+            {
+                test: /(\.jsx|\.js)$/,
+                exclude: /node_modules/,
+                use: 'babel-loader'
+            }
         ]
-    }
+    },
+
+    plugins: plugins
 };
