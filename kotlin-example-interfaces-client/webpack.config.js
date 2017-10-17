@@ -6,11 +6,14 @@
 const path = require('path');
 const webpack = require('webpack');
 
-// webpack plugins
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const env = process.env.NODE_ENV || 'local';
+const isProduction = env === 'production';
 
 const distRoot = path.resolve(__dirname, 'dist');
 const srcRoot = path.resolve(__dirname, 'src');
+
+// webpack plugins
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const plugins = [
     new HtmlWebpackPlugin({
@@ -19,13 +22,23 @@ const plugins = [
     })
 ];
 
+if (isProduction) {
+    const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
+    plugins.push(
+        new UglifyJSPlugin()
+    );
+} else {
+    plugins.push(new webpack.HotModuleReplacementPlugin());
+}
+
 module.exports = {
     entry: {
         app: './src/app/index.js'
     },
     output: {
         path: distRoot,
-        filename: 'app-dist.local.js'
+        filename: '[name]-dist.' + env + '.js'
     },
     module: {
         rules: [
@@ -35,12 +48,9 @@ module.exports = {
                 use: 'babel-loader'
             },
             {
-
-            },
-            {
-                test :/\.css$/,
+                test: /\.css$/,
                 exclude: /node_modules/,
-                use: [ { loader: 'style-loader' }, { loader: 'css-loader' }]
+                use: [{loader: 'style-loader'}, {loader: 'css-loader', options: {modules: true}}]
             }
         ]
     },

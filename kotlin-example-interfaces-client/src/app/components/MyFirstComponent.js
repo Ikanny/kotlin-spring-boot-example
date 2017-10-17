@@ -8,8 +8,8 @@ import styles from './MyFirstComponent.css';
 export default class MyFirstComponent extends React.Component {
     render() {
         return (
-            <div className={styles.main_panel}>
-                <h1>hello world!!!</h1>
+            <div>
+                <h1 className={styles.main_panel}>test good!!</h1>
             </div>
         );
     }

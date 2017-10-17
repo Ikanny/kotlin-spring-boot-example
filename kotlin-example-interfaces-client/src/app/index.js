@@ -7,7 +7,15 @@ import ReactDOM from 'react-dom';
 
 import MyFirstComponent from './components/MyFirstComponent';
 
-ReactDOM.render(
-    <MyFirstComponent />,
-    document.getElementById('react-root')
-);
+function render() {
+    ReactDOM.render(
+        <MyFirstComponent />,
+        document.getElementById('react-root')
+    );
+}
+
+render();
+
+if (module.hot) {
+    module.hot.accept(() => true, render);
+}
