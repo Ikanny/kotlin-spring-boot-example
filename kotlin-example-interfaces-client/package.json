@@ -6,8 +6,7 @@
   "scripts": {
     "build:local": "NODE_ENV=local webpack",
     "build:production": "NODE_ENV=production webpack",
-    "local": "NODE_ENV=local webpack-dev-server server.js --content-base=dist --watch --hot --inline",
-    "run:local": "NODE_ENV=local node server.js"
+    "local": "NODE_ENV=local node server.js"
   },
   "author": "Ikanny",
   "license": "ISC",
@@ -26,8 +25,13 @@
     "webpack-dev-server": "^2.9.2"
   },
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   }
 }

@@ -25,5 +25,5 @@ const compiler = webpack(webpackConfig);
 const server = new webpackDevServer(compiler, devServerOptions);
 
 server.listen(proxyConfig.port, proxyConfig.devServerHost, () =>
-    console.log('start listening at port :', proxyConfig.port)
+    console.log('start listening at port', proxyConfig.port)
 );

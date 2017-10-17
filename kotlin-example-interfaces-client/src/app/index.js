@@ -4,12 +4,13 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import createStore from './store';
 
-import MyFirstComponent from './components/MyFirstComponent';
+import MainComponent from './MainComponent';
 
 function render() {
     ReactDOM.render(
-        <MyFirstComponent />,
+        <MainComponent store={createStore({})}/>,
         document.getElementById('react-root')
     );
 }
