@@ -6,18 +6,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getCurrentTime } from './actions';
 
+import styles from './CurrentTimeComponent.css';
+
 class CurrentTimeComponent extends React.Component {
 
     componentDidMount() {
         const { dispatch, currentTime } = this.props;
-        dispatch(getCurrentTime());
+        if (!currentTime) {
+            dispatch(getCurrentTime());
+        }
     }
 
     render() {
-        console.log('render props :', this.props);
         return (
             <div>
-                <h2>{this.props.currentTime}</h2>
+                <h2 className={styles.main_title}>{this.props.currentTime}</h2>
             </div>
         );
     }
@@ -25,9 +28,8 @@ class CurrentTimeComponent extends React.Component {
 
 function mapStateToMap(state) {
     const currentTimeModule = state.currentTimeModule || {};
-    console.log('mapStateToMap state :', state);
     return {
-        currentTime: currentTimeModule.currentTime || 123
+        currentTime: currentTimeModule.currentTime
     };
 }
 

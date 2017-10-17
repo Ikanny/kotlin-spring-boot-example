@@ -6,5 +6,5 @@ import { combineReducers } from 'redux';
 import currentTimeReducers from './modules/currenttime/reducers';
 
 export default combineReducers({
-    currentTime: currentTimeReducers
+    currentTimeModule: currentTimeReducers
 });
