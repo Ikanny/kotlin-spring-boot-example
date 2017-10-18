@@ -6,22 +6,26 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { getCurrentTime } from './actions';
 
-import * as styles from './CurrentTimeComponent.css';
-// const styles = require('./CurrentTimeComponent.css');
+const styles = require('./CurrentTimeComponent.css');
 
-type PropTypes = {
-    dispatch: any,
-    currentTime: number
-};
+export type StateType = {
+    currentTime: number;
+}
 
-class _CurrentTimeComponent extends React.Component<PropTypes> {
+export type ActionType = {
+    fetchCurrentTime: any
+}
 
-    props: PropTypes;
+export type PropsType = StateType & ActionType;
+
+export class CurrentTimeComponent extends React.Component<PropsType> {
+
+    props: PropsType;
 
     componentDidMount() {
-        const { dispatch, currentTime } = this.props;
+        const { fetchCurrentTime, currentTime } = this.props;
         if (!currentTime) {
-            dispatch(getCurrentTime());
+            fetchCurrentTime();
         }
     }
 
@@ -41,4 +45,10 @@ function mapStateToMap(state: any) {
     };
 }
 
-export const CurrentTimeComponent = connect(mapStateToMap)(_CurrentTimeComponent);
+function mapDispatchToProps(dispatch: any) {
+    return {
+
+    };
+}
+
+// export const CurrentTimeComponent = connect(mapStateToMap)(_CurrentTimeComponent);
