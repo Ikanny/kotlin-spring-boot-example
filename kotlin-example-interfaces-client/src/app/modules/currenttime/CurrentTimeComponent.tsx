@@ -3,8 +3,6 @@
  * @since 2017. 10. 17.
  */
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { getCurrentTime } from './actions';
 
 const styles = require('./CurrentTimeComponent.css');
 
@@ -37,18 +35,3 @@ export class CurrentTimeComponent extends React.Component<PropsType> {
         );
     }
 }
-
-function mapStateToMap(state: any) {
-    const currentTimeModule = state.currentTimeModule || {};
-    return {
-        currentTime: currentTimeModule.currentTime
-    };
-}
-
-function mapDispatchToProps(dispatch: any) {
-    return {
-
-    };
-}
-
-// export const CurrentTimeComponent = connect(mapStateToMap)(_CurrentTimeComponent);
