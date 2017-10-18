@@ -2,7 +2,7 @@
  * @author ryuikhan
  * @since 2017. 10. 17.
  */
-import fetch from 'isomorphic-fetch';
+import * as fetch from 'isomorphic-fetch';
 
 import { GET_CURRENT_TIME } from './types';
 

@@ -34,14 +34,22 @@ if (isProduction) {
 
 module.exports = {
     entry: {
-        app: './src/app/index.js'
+        app: './src/app/index.tsx'
     },
     output: {
         path: distRoot,
         filename: '[name]-dist.' + env + '.js'
     },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.json']
+    },
     module: {
         rules: [
+            {
+                test: /(\.tsx?|\.jsx?)$/,
+                use: 'ts-loader',
+                exclude: /node_modules/
+            },
             {
                 test: /(\.jsx|\.js)$/,
                 exclude: /node_modules/,
@@ -50,7 +58,17 @@ module.exports = {
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                use: [{loader: 'style-loader'}, {loader: 'css-loader', options: {modules: true}}]
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'typings-for-css-modules-loader',
+                        options: {
+                            modules: true,
+                            namedExport: true
+                        }
+                    }]
             }
         ]
     },

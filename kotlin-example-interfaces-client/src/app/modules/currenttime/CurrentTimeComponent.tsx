@@ -2,13 +2,21 @@
  * @author ryuikhan
  * @since 2017. 10. 17.
  */
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { getCurrentTime } from './actions';
 
-import styles from './CurrentTimeComponent.css';
+import * as styles from './CurrentTimeComponent.css';
+// const styles = require('./CurrentTimeComponent.css');
 
-class CurrentTimeComponent extends React.Component {
+type PropTypes = {
+    dispatch: any,
+    currentTime: number
+};
+
+class _CurrentTimeComponent extends React.Component<PropTypes> {
+
+    props: PropTypes;
 
     componentDidMount() {
         const { dispatch, currentTime } = this.props;
@@ -26,11 +34,11 @@ class CurrentTimeComponent extends React.Component {
     }
 }
 
-function mapStateToMap(state) {
+function mapStateToMap(state: any) {
     const currentTimeModule = state.currentTimeModule || {};
     return {
         currentTime: currentTimeModule.currentTime
     };
 }
 
-export default connect(mapStateToMap)(CurrentTimeComponent);
+export const CurrentTimeComponent = connect(mapStateToMap)(_CurrentTimeComponent);

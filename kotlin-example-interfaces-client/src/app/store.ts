@@ -2,12 +2,13 @@
  * @author ryuikhan
  * @since 2017. 10. 17.
  */
-import { createStore, applyMiddleware } from 'redux';
+import {createStore, applyMiddleware, Store} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import reducers from './reducers';
+import {StoreState} from "./type";
 
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 
-export default function configureStore( initialState ) {
+export function configureStore( initialState: StoreState ): Store<StoreState> {
     return createStoreWithMiddleware(reducers, initialState);
 }

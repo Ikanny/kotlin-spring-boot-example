@@ -7,9 +7,9 @@ import { GET_CURRENT_TIME } from './types';
 export default function(state = {}, action) {
     switch (action.type) {
         case GET_CURRENT_TIME:
-            return Object.assign({}, state, {
+            return {
                 currentTime: action.currentTime
-            });
+            };
 
         default:
             return {};
