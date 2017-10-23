@@ -92,6 +92,13 @@ task jooqGenerate {
                 .withGenerator(new Generator()
                 .withGenerate(new Generate().withPojos(true))
                 .withDatabase(new Database()
+
+                // for JodaTimeConverter
+                .withForcedTypes(new ForcedType()
+                .withUserType("org.joda.time.DateTime")
+                .withConverter("com.realtonerlab.example.domain.persistence.jooq.converter.JodaTimeConverter")
+                .withTypes("timestamp"))
+
                 .withInputSchema("public")
                 .withOutputSchemaToDefault(true)
         )

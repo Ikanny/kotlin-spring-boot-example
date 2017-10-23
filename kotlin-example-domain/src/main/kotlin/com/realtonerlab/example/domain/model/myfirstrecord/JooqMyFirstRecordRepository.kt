@@ -19,7 +19,7 @@ class JooqMyFirstRecordRepository(private val dslContext: DSLContext) : MyFirstR
                     .selectFrom(MY_FIRST_RECORDS)
                     .where(MY_FIRST_RECORDS.ID.eq(id))
                     .fetchOne()?.let {
-                MyFirstRecord(it.id, it.name, DateTime(it.createdat), DateTime(it.modifiedat))
+                MyFirstRecord(it.id, it.name, it.createdat, it.modifiedat)
             }
 
     override fun findByIdWithDetails(id: Long): MyFirstRecordWithDetails? =
@@ -53,6 +53,6 @@ class JooqMyFirstRecordRepository(private val dslContext: DSLContext) : MyFirstR
             MyFirstRecordDetail(record.getValue(MY_FIRST_RECORD_DETAILS.ID),
                     record.getValue(MY_FIRST_RECORD_DETAILS.RECORDID),
                     record.getValue(MY_FIRST_RECORD_DETAILS.DESCRIPTION),
-                    DateTime(record.getValue(MY_FIRST_RECORD_DETAILS.CREATEDAT)),
-                    DateTime(record.getValue(MY_FIRST_RECORD_DETAILS.MODIFIEDAT)))
+                    record.getValue(MY_FIRST_RECORD_DETAILS.CREATEDAT),
+                    record.getValue(MY_FIRST_RECORD_DETAILS.MODIFIEDAT))
 }
