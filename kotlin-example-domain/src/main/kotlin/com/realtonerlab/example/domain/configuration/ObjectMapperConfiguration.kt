@@ -2,6 +2,7 @@ package com.realtonerlab.example.domain.configuration
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.joda.JodaModule
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -16,6 +17,7 @@ class ObjectMapperConfiguration {
     fun objectMapper(): ObjectMapper {
         val objectMapper = ObjectMapper()
         objectMapper.registerModule(JodaModule())
+        objectMapper.registerKotlinModule()
         return objectMapper
     }
 }
