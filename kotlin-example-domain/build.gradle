@@ -54,6 +54,7 @@ dependencies {
     compile "org.springframework.boot:spring-boot-devtools"
 
     // dependencies for db
+    compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final"
     compile "mysql:mysql-connector-java:6.0.6"
     compile "com.zaxxer:HikariCP:2.7.0"
 

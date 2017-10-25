@@ -1,17 +1,18 @@
 package com.realtonerlab.example.domain.model.myfirstrecord
 
-import com.realtonerlab.example.domain.model.KotlinExampleModel
+import com.realtonerlab.example.domain.model.DefaultKotlinExampleModel
 import org.joda.time.DateTime
 import java.util.*
+import javax.persistence.Column
 
 /**
  * @author ryuikhan
  * @since 2017. 10. 2.
  */
-open class MyFirstRecord(val id: Long?,
-                         val name: String,
-                         val createdAt: DateTime = DateTime.now(),
-                         val modifiedAt: DateTime = DateTime.now()) : KotlinExampleModel() {
+open class MyFirstRecord(@Column(name = "id") val id: Long?,
+                         @Column(name = "name") val name: String,
+                         createdAt: DateTime = DateTime.now(),
+                         modifiedAt: DateTime = DateTime.now()) : DefaultKotlinExampleModel(createdAt, modifiedAt) {
 
     override fun hashCode(): Int = Objects.hash(name)
 
