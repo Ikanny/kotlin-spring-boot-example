@@ -5,8 +5,10 @@ import com.realtonerlab.example.domain.dto.MyFirstRecordDto
 import com.realtonerlab.example.domain.dto.MyFirstRecordWithDetailsDto
 import com.realtonerlab.example.domain.dto.fromMyFirstRecord
 import com.realtonerlab.example.domain.dto.fromMyFirstRecordWithDetails
+import com.realtonerlab.example.domain.model.myfirstrecord.MyFirstRecord
 import com.realtonerlab.example.domain.model.myfirstrecord.MyFirstRecordRepository
 import org.springframework.stereotype.Service
+import org.springframework.util.StringUtils
 
 /**
  * @author ryuikhan
@@ -14,6 +16,16 @@ import org.springframework.stereotype.Service
  */
 @Service
 class MyFirstRecordService(private val myFirstRecordRepository: MyFirstRecordRepository) {
+
+    fun createMyFirstRecord(name: String): MyFirstRecordDto? {
+        Preconditions.checkArgument(!StringUtils.isEmpty(name))
+
+        return myFirstRecordRepository.create(MyFirstRecord(name = name))
+                ?.let { fromMyFirstRecord(it) }
+    }
+
+    fun findAll(): List<MyFirstRecordDto> =
+            myFirstRecordRepository.findAll().map { fromMyFirstRecord(it) }
 
     fun findById(id: Long): MyFirstRecordDto? {
         Preconditions.checkArgument(id > 0)

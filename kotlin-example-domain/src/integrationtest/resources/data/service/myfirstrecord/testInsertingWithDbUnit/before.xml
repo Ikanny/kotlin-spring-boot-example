@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <my_first_records id="1" name="firstOne" />
+    <my_first_records id="2" name="secondOne" />
+</dataset>

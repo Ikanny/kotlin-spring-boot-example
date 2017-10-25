@@ -13,6 +13,21 @@ import org.springframework.stereotype.Repository
 @Repository
 class JooqMyFirstRecordRepository(private val dslContext: DSLContext) : MyFirstRecordRepository {
 
+    override fun create(myFirstRecord: MyFirstRecord): MyFirstRecord? =
+            dslContext.insertInto(MY_FIRST_RECORDS)
+                    .set(MY_FIRST_RECORDS.NAME, myFirstRecord.name)
+                    .set(MY_FIRST_RECORDS.CREATEDAT, myFirstRecord.createdAt)
+                    .set(MY_FIRST_RECORDS.MODIFIEDAT, myFirstRecord.modifiedAt)
+                    .returning()
+                    .fetchOne()
+                    ?.into(MyFirstRecord::class.java)
+
+    override fun findAll(): List<MyFirstRecord> =
+            dslContext.selectFrom(MY_FIRST_RECORDS)
+                    .fetch()
+                    ?.into(MyFirstRecord::class.java)
+                    ?: emptyList()
+
     override fun findById(id: Long): MyFirstRecord? =
             dslContext
                     .selectFrom(MY_FIRST_RECORDS)

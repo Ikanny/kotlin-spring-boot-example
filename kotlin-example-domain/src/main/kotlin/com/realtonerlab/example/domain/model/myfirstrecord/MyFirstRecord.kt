@@ -9,7 +9,7 @@ import javax.persistence.Column
  * @author ryuikhan
  * @since 2017. 10. 2.
  */
-open class MyFirstRecord(@Column(name = "id") val id: Long?,
+open class MyFirstRecord(@Column(name = "id") val id: Long? = null,
                          @Column(name = "name") val name: String,
                          createdAt: DateTime = DateTime.now(),
                          modifiedAt: DateTime = DateTime.now()) : DefaultKotlinExampleModel(createdAt, modifiedAt) {
